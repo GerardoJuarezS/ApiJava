@@ -1,27 +1,19 @@
 spring:
+  application:
+    name: todo-app
   datasource:
-    url: ${JDBC_DATABASE_URL:jdbc:h2:mem:ApiVentas}
-    username: ${JDBC_DATABASE_USERNAME:sa}
-    password: ${JDBC_DATABASE_PASSWORD:}
-    dbcp2:
-      max-wait-millis: 30000
-      validation-query: select 1
-      validation-query-timeout: 30
+    driver-class-name: org.h2.Driver
+    username: a
+    password: a
+    url: "jdbc:h2:mem:miapi;DB_CLOSE_ON_EXIT=FALSE"
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
   jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
     hibernate:
-      ddl-auto: update
-    open-in-view: false
-    properties:
-      hibernate:
-        jdbc:
-          lob:
-            non_contextual_creation: true
-        id:
-          new_generator_mappings: true
-  mvc:
-    format:
-      date: yyyy-MM-dd
-      date-time: yyyy-MM-dd'T'HH:mm:ss
-      time: HH:mm:ss
-springdoc:
-  pathsToMatch: /api/**
+      ddl-auto: create-drop
+
